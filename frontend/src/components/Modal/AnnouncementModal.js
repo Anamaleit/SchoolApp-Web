@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useAnnouncementsContext } from '../../hooks/useAnnouncementsContext'
@@ -13,6 +13,7 @@ function AnnouncementModal() {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [error, setError] = useState(null)
+    const [emptyFields, setEmptyFields] = useState([])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -30,6 +31,7 @@ function AnnouncementModal() {
 
         if(!response.ok) {
             setError(json.error)
+            setEmptyFields(json.emptyFields)
         }
 
         if(response.ok) {
@@ -37,10 +39,15 @@ function AnnouncementModal() {
             setTitle('')
             setDescription('')
             setError(null)
+            setEmptyFields([])
             console.log('new announcement added', json)
             dispatch({type: 'CREATE_ANNOUNCEMENT', payload: json})
         }
     }
+
+    setTimeout(() => {
+        setError(!null)
+    }, 3000);
 
     return (
         <>
@@ -49,32 +56,29 @@ function AnnouncementModal() {
 
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-            <Modal.Title>Create a new announcement</Modal.Title>
+                <Modal.Title>Create a new announcement</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <form className="create" onSubmit={handleSubmit}>
-                    <div className="class-input">
-                        Kelas mana yang dapat melihat pengumuman ini?
-                        <input type="text"
-                            onChange={(e) => setClasses(e.target.value)}
-                            value={classes}
-                        />
-                    </div> 
-                    <div className="title-input">
-                        Header
-                        <input type="text"
-                            onChange={(e) => setTitle(e.target.value)}
-                            value={title}
-                        />
-                    </div>
-                    <div className="desc-input">
-                        Body
-                        <input type="text"
-                            onChange={(e) => setDescription(e.target.value)}
-                            value={description}
-                        />
-                    </div>
-
+                    <div className="class-input">Kelas mana yang dapat melihat pengumuman ini?</div>
+                    <input type="text"
+                        onChange={(e) => setClasses(e.target.value)}
+                        value={classes}
+                        className={emptyFields.includes('classes') ? 'error' : ''}
+                    />
+                    <div className="title-input">Header</div>
+                    <input type="text"
+                        onChange={(e) => setTitle(e.target.value)}
+                        value={title}
+                        className={emptyFields.includes('title') ? 'error' : ''}
+                    />
+                    <div className="desc-input">Body</div>
+                    <input type="text"
+                        onChange={(e) => setDescription(e.target.value)}
+                        value={description}
+                        className={emptyFields.includes('description') ? 'error' : ''}
+                        id='textDesc'
+                    />
                     <button>Add Announcement</button>
                     {error && <div className="error">{error}</div>}
                 </form>
@@ -82,9 +86,6 @@ function AnnouncementModal() {
             <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
                 Close
-            </Button>
-            <Button variant="primary" onClick={handleClose}>
-                Save Changes
             </Button>
             </Modal.Footer>
         </Modal>

@@ -24,7 +24,7 @@ const AnnouncementDetails = ({ announcement }) => {
             <div className="announcement-content">
                 <p><strong></strong>{announcement.description}</p>
             </div>
-            <button onClick={handleClick}>Delete</button>
+            <button className="delete-button" onClick={handleClick}>Delete</button>
         </div>
     )
 }
