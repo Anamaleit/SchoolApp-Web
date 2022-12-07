@@ -14,7 +14,30 @@ const getAnnouncement = async (req, res) => {
 
 // create a new announcement
 const createAnnouncement = async (req, res) => {
-    await Generic.create(req,res,Announcement,"announcement");
+    const {classes, title, description} = req.body
+
+    let emptyFields = []
+
+    if (!classes) {
+        emptyFields.push('classes')
+    }
+    if (!title) {
+        emptyFields.push('title')
+    }
+    if (!description) {
+        emptyFields.push('escription')
+    }
+    if (emptyFields.length > 0) {
+        return res.status(400).json({ error: 'Please fill in all fields', emptyFields })
+    }
+
+    // add doc to db
+    try { 
+        const announcement = await Announcement.create({classes, title, description})
+        res.status(200).json(announcement)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
 }
 
 // delete a Announcement
