@@ -21,7 +21,7 @@ const Home = () => {
             }
         }
         fetchAnnouncements()
-    }, [])
+    }, [dispatch])
 
 
     return (
