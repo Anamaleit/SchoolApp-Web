@@ -1,4 +1,20 @@
+import { useAnnouncementsContext } from '../hooks/useAnnouncementsContext'
+
 const AnnouncementDetails = ({ announcement }) => {
+    const { dispatch } = useAnnouncementsContext()
+
+    const handleClick = async () => {
+        const response = await fetch ('api/announcements/' + announcement._id, {
+            method: 'DELETE'
+        })
+        const json = await response.json()
+
+        if (response.ok) {
+            dispatch({type: 'DELETE_ANNOUNCEMENT', payload:json})
+        }
+    }
+
+
     return (
         <div className="announcement-details">
             <div className="announcement-header">
@@ -8,6 +24,7 @@ const AnnouncementDetails = ({ announcement }) => {
             <div className="announcement-content">
                 <p><strong></strong>{announcement.description}</p>
             </div>
+            <button onClick={handleClick}>Delete</button>
         </div>
     )
 }

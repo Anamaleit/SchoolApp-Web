@@ -12,6 +12,10 @@ export const announcementsReducer = (state, action) => {
             return {
                 announcements: [action.payload, ...state.announcements]
             }
+        case 'DELETE_ANNOUNCEMENT':
+            return {
+                announcements: state.announcements.filter((w) => w._id !== action.payload._id)
+            }
         default:
             return state
     }
