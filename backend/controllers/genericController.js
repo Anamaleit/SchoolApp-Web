@@ -42,8 +42,8 @@ module.exports = {
             return res.status(404).json({error: "No "+itemNameSingular+" found"})
         }
         const item = await model.findOneAndUpdate({_id: id}, {
-            ...req.body
-        })
+            ...req.body}, {new: true}
+        )
         if (!item) {
             return res.status(404).json({error: "No "+itemNameSingular+" found"})
         }

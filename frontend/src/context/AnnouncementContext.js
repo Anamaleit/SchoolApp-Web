@@ -16,6 +16,9 @@ export const announcementsReducer = (state, action) => {
             return {
                 announcements: state.announcements.filter((w) => w._id !== action.payload._id)
             }
+        case 'UPDATE_ANNOUNCEMENT':
+            return {
+                announcements: state.announcements.map((announcement) =>  announcement._id === action.payload._id ? action.payload : announcement)}
         default:
             return state
     }
