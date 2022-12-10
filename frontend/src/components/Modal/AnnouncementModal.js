@@ -66,19 +66,26 @@ function AnnouncementModal() {
                         value={classes}
                         className={emptyFields.includes('classes') ? 'error' : ''}
                     />
-                    <div className="title-input">Header</div>
-                    <input type="text"
-                        onChange={(e) => setTitle(e.target.value)}
-                        value={title}
-                        className={emptyFields.includes('title') ? 'error' : ''}
-                    />
-                    <div className="desc-input">Body</div>
-                    <input type="text"
-                        onChange={(e) => setDescription(e.target.value)}
-                        value={description}
-                        className={emptyFields.includes('description') ? 'error' : ''}
-                        id='textDesc'
-                    />
+                    <div className="form-outline">
+                        <label className="form-label">Header</label>
+                        <input 
+                            className={emptyFields.includes('title') ? 'error' : ''}
+                            type="text"
+                            onChange={(e) => setTitle(e.target.value)}
+                            value={title}
+                        />
+                    </div>
+                    <div className="form-outline mb-4">
+                        <label className="form-label">Body</label>
+                        <textarea
+                            className={emptyFields.includes('description') ? 'error' : ''}
+                            type="text"
+                            onChange={(e) => setDescription(e.target.value)}
+                            value={description}
+                            rows="3"
+                        />
+                    </div>
+
                     <button>Add Announcement</button>
                     {error && <div className="error">{error}</div>}
                 </form>

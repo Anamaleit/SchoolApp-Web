@@ -2,10 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
 
 /* layout */
-:root {
-  --primary: #1aac83;
-  --error: #e7195a;
+.App {
+  font-family: "Poppins";
 }
+
 body {
   background: #f1f1f1;
   margin: 0;
@@ -94,6 +94,15 @@ header a:hover {
   margin-bottom: 20px;
 }
 
-#textDesc {
-  padding: 40px;
+/* auth forms */
+form.signup, form.login {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+textarea {
+  width: 465px;
 }
