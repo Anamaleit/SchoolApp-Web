@@ -7,6 +7,8 @@ import Absensi from './pages/Absensi'
 import StatusPembayaran from './pages/StatusPembayaran'
 import Keterangan from './pages/Keterangan'
 import Navbar from './components/Navbar';
+import Login from './pages/Login'
+import Signup from './pages/Signup'
 
 function App() {
   return (
@@ -34,6 +36,14 @@ function App() {
             <Route
               path="/Keterangan"
               element= {<Keterangan />}
+            />
+            <Route
+              path="/login"
+              element={<Login/>}
+            />
+            <Route
+              path="/signup"
+              element={<Signup/>}
             />
           </Routes>
         </div>
