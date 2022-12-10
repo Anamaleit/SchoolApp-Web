@@ -4,12 +4,15 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AnnouncementsContextProvider } from './context/AnnouncementContext';
+import { AuthContextProvider } from './context/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AnnouncementsContextProvider>
-        <App/>
-    </AnnouncementsContextProvider>
+    <AuthContextProvider>
+      <AnnouncementsContextProvider>
+          <App/>
+      </AnnouncementsContextProvider>
+    </AuthContextProvider>
   </React.StrictMode>
 );
