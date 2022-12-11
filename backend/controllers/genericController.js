@@ -36,7 +36,7 @@ module.exports = {
         }
         res.status(200).json(item)
     },
-    update : async (req, res) => {
+    update : async (req, res, model, itemName) => {
         const { id } = req.params
         if(!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(404).json({error: "No "+itemNameSingular+" found"})

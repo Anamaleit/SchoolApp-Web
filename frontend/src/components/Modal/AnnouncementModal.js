@@ -3,15 +3,46 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useAnnouncementsContext } from '../../hooks/useAnnouncementsContext'
 
-function AnnouncementModal() {
+function AnnouncementModal(props) {
+    
+    // Handle props.
+    let dispatchType;
+    let dispatchMessage;
+    let formTitle;
+    let formFinishButtonText;
+    let buttonTitle;
+    let createMode;
+    let updateMode;
+    switch (props.mode){
+        default:
+        case 'create':
+            dispatchType = 'CREATE_ANNOUNCEMENT';
+            dispatchMessage = 'new announcement added';
+            formTitle = 'Create a new announcement';
+            formFinishButtonText = 'Add Announcement';
+            buttonTitle = 'Create a new announcement';
+            createMode = true;
+            updateMode = false;
+            break;
+        case 'update':
+            dispatchType = 'UPDATE_ANNOUNCEMENT';
+            dispatchMessage = 'announcement updated';
+            formTitle = 'Edit an announcement';
+            formFinishButtonText = 'Update Announcement';
+            buttonTitle = 'Edit';
+            createMode = false;
+            updateMode = true;
+            break;
+    }
+    
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const { dispatch } = useAnnouncementsContext()
-    const [classes, setClasses] = useState('')
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
+    const [classes, setClasses] = useState(updateMode?props.announcement.classes:'')
+    const [title, setTitle] = useState(updateMode?props.announcement.title:'')
+    const [description, setDescription] = useState(updateMode?props.announcement.description:'')
     const [error, setError] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
 
@@ -20,13 +51,26 @@ function AnnouncementModal() {
 
         const announcement = {classes, title, description}
 
-        const response = await fetch('/api/announcements', {
-            method: 'POST',
-            body: JSON.stringify(announcement),
-            headers: {
-                'Content-type': 'application/json'
-            }
-        })
+        let response;
+        if (createMode){
+            response = await fetch('/api/announcements', {
+                method: 'POST',
+                body: JSON.stringify(announcement),
+                headers: {
+                    'Content-type': 'application/json'
+                }
+            })
+        }
+        else if (updateMode){
+            announcement._id = props.announcement._id;
+            response = await fetch('/api/announcements/'+announcement._id, {
+                method: 'PATCH',
+                body: JSON.stringify(announcement),
+                headers: {
+                    'Content-type': 'application/json'
+                }
+            })
+        }
         const json = await response.json()
 
         if(!response.ok) {
@@ -35,13 +79,16 @@ function AnnouncementModal() {
         }
 
         if(response.ok) {
-            setClasses('')
-            setTitle('')
-            setDescription('')
+            // Blank out fields after submission only if in create mode.
+            if (createMode){
+                setClasses('')
+                setTitle('')
+                setDescription('')
+            }
             setError(null)
             setEmptyFields([])
-            console.log('new announcement added', json)
-            dispatch({type: 'CREATE_ANNOUNCEMENT', payload: json})
+            console.log(dispatchMessage, dispatchType, json)
+            dispatch({type: dispatchType, payload: json})
         }
     }
 
@@ -51,12 +98,12 @@ function AnnouncementModal() {
 
     return (
         <>
-        <button className="announcement-button" onClick={handleShow}> Create a new announcement
+        <button className="announcement-button" onClick={handleShow}> {buttonTitle}
         </button>
 
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-                <Modal.Title>Create a new announcement</Modal.Title>
+                <Modal.Title>{formTitle}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <form className="create" onSubmit={handleSubmit}>
@@ -86,7 +133,7 @@ function AnnouncementModal() {
                         />
                     </div>
 
-                    <button>Add Announcement</button>
+                    <button>{formFinishButtonText}</button>
                     {error && <div className="error">{error}</div>}
                 </form>
             </Modal.Body>
