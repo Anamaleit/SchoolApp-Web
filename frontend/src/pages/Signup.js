@@ -39,8 +39,7 @@ const Signup = () => {
             </div>
 
             <button disabled={isLoading}>Sign up</button>
-            {error && <div className="error" style={{marginTop: "20px"}}>{error}
-            </div>}
+            {error && <div className="error" style={{marginTop: "20px"}}>{error}</div>}
         </form>
     )
 } 

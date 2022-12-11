@@ -29,7 +29,7 @@ const AnnouncementDetails = ({ announcement }) => {
             <div className="announcement-content">
                 <p><strong></strong>{announcement.description}</p>
             </div>
-            <AnnouncementModal mode="update" announcement={announcement} />
+            <AnnouncementModal mode="update" announcement={announcement} className="announcement-update-button"/>
             <br/>
             <button className="delete-button" onClick={handleClick}>Delete</button>
         </div>

@@ -26,20 +26,24 @@ header a:hover {
   color : white
 }
 
-.nav ul {
+.nav-left ul, .nav-right ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.nav > ul {
+.nav-left > ul, .nav-right > ul {
   display: flex;
 }
 
-.nav > ul > li {
+.nav-left > ul > li, .nav-right > ul > li {
   position: relative;
   white-space: nowrap;
   padding: 10px 0 10px 22px;
+}
+
+.nav-left, .nav-right {
+  display: inline-block;
 }
 
 .pages{
@@ -48,10 +52,16 @@ header a:hover {
   margin: 0 auto;
 }
 
-.home .announcement-button {
+.home .announcement-create-button {
   max-width: 800px;
   width: 100%;
   padding: 12px;
+}
+
+.home .announcement-update-button {
+  position: relative;
+  left: 83%;
+  top: 30px;
 }
 
 .announcement-details {
@@ -105,4 +115,5 @@ form.signup, form.login {
 
 textarea {
   width: 465px;
+  text-align: justify;
 }

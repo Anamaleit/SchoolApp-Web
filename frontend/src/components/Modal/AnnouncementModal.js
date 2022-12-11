@@ -13,6 +13,7 @@ function AnnouncementModal(props) {
     let buttonTitle;
     let createMode;
     let updateMode;
+    let buttonType;
     switch (props.mode){
         default:
         case 'create':
@@ -23,6 +24,7 @@ function AnnouncementModal(props) {
             buttonTitle = 'Create a new announcement';
             createMode = true;
             updateMode = false;
+            buttonType= 'announcement-create-button'
             break;
         case 'update':
             dispatchType = 'UPDATE_ANNOUNCEMENT';
@@ -32,6 +34,7 @@ function AnnouncementModal(props) {
             buttonTitle = 'Edit';
             createMode = false;
             updateMode = true;
+            buttonType= 'announcement-update-button'
             break;
     }
     
@@ -98,7 +101,7 @@ function AnnouncementModal(props) {
 
     return (
         <>
-        <button className="announcement-button" onClick={handleShow}> {buttonTitle}
+        <button className={buttonType} onClick={handleShow}> {buttonTitle}
         </button>
 
         <Modal show={show} onHide={handleClose}>
