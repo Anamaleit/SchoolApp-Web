@@ -1,5 +1,7 @@
 import { useAnnouncementsContext } from '../hooks/useAnnouncementsContext'
 
+import AnnouncementModal from "./Modal/AnnouncementModal"
+
 // date fns
 import { format } from 'date-fns'
 
@@ -27,6 +29,8 @@ const AnnouncementDetails = ({ announcement }) => {
             <div className="announcement-content">
                 <p><strong></strong>{announcement.description}</p>
             </div>
+            <AnnouncementModal mode="update" announcement={announcement} />
+            <br/>
             <button className="delete-button" onClick={handleClick}>Delete</button>
         </div>
     )
