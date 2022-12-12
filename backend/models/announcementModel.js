@@ -1,20 +1,7 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema
+const baseSchema = require('../../frontend/src/shared/base-schema/announcement.js');
 
-const announcementSchema = new Schema({
-  classes: {
-    type: Array,
-    required: true
-  },
-  title: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  }
-}, { timestamps: true })
+const schema = new mongoose.Schema(baseSchema.schema, { timestamps: true });
 
-module.exports = mongoose.model('Announcement', announcementSchema)
+module.exports = mongoose.model('Announcement', schema);
