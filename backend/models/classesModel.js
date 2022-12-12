@@ -1,20 +1,7 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema
+const baseSchema = require('../../frontend/src/shared/base-schema/class.js');
 
-const classesSchema = new Schema({
-  name: {
-    type: Array,
-    required: true
-  },
-  teachers: {
-    type: Array,
-    required: true
-  },
-  students: {
-    type: Array,
-    required: true
-  }
-}, { timestamps: true })
+const schema = new mongoose.Schema(baseSchema.schema, { timestamps: true });
 
-module.exports = mongoose.model('Classes', classesSchema)
+module.exports = mongoose.model('Classes', schema);

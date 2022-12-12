@@ -9,6 +9,7 @@ import Keterangan from './pages/Keterangan'
 import Navbar from './components/Navbar';
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import Raw from './pages/Raw'
 
 function App() {
   return (
@@ -44,6 +45,10 @@ function App() {
             <Route
               path="/signup"
               element={<Signup/>}
+            />
+            <Route
+              path="/raw"
+              element={<Raw/>}
             />
           </Routes>
         </div>
