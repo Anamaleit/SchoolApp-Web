@@ -1,4 +1,5 @@
 import { useAnnouncementsContext } from '../hooks/useAnnouncementsContext'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 import AnnouncementModal from "./Modal/AnnouncementModal"
 
@@ -7,10 +8,18 @@ import { format } from 'date-fns'
 
 const AnnouncementDetails = ({ announcement }) => {
     const { dispatch } = useAnnouncementsContext()
+    const { user } = useAuthContext()
 
     const handleClick = async () => {
+        if (!user) {
+            return
+        }
+        
         const response = await fetch ('api/announcements/' + announcement._id, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
         })
         const json = await response.json()
 

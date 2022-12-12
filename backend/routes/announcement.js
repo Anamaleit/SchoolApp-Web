@@ -7,7 +7,12 @@ const {
     updateAnnouncement
 } = require('../controllers/announcementController')
 
+const requireAuth = require('../middleware/requireAuth')
+
 const router = express.Router()
+
+// require auth for all announcement routes
+router.use(requireAuth)
 
 // GET all announcements
 router.get('/', getAnnouncements)

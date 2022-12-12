@@ -1,7 +1,9 @@
 import { useLogout } from '../hooks/useLogout'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 const Navbar = () => {
     const { logout } = useLogout()
+    const { user } = useAuthContext()
 
     const handleClick = () => {
         logout()
@@ -9,6 +11,7 @@ const Navbar = () => {
 
     return (
         <header>
+            {user && (
             <div className="nav-left">
                 <ul>
                     <li><a href="/">Dashboard</a></li>
@@ -16,15 +19,19 @@ const Navbar = () => {
                     <li><a href="/Absensi">Absensi</a></li>
                     <li><a href="/StatusPembayaran">Status Pembayaran</a></li>
                     <li><a href="/Keterangan">Keterangan</a></li>
+                    <li style={{marginLeft: "600px"}}>{user.email}</li>
+                    <button onClick={handleClick}>Log out</button>
                 </ul>
             </div>
+            )}
+            {!user && (
             <div className="nav-right">
                 <ul>
-                    <button onClick={handleClick} style={{marginLeft: "600px"}}>Log out</button>
                     <li><a href="/login">Login</a></li>
                     <li><a href="/signup">Signup</a></li>
                 </ul>
             </div>
+            )}
         </header>
     )
 }

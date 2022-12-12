@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useAnnouncementsContext } from '../../hooks/useAnnouncementsContext'
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 function AnnouncementModal(props) {
     
@@ -43,6 +44,8 @@ function AnnouncementModal(props) {
     const handleShow = () => setShow(true);
 
     const { dispatch } = useAnnouncementsContext()
+    const { user } = useAuthContext()
+
     const [classes, setClasses] = useState(updateMode?props.announcement.classes:'')
     const [title, setTitle] = useState(updateMode?props.announcement.title:'')
     const [description, setDescription] = useState(updateMode?props.announcement.description:'')
@@ -52,6 +55,11 @@ function AnnouncementModal(props) {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        if (!user) {
+            setError('You must be logged in')
+            return
+          }
+
         const announcement = {classes, title, description}
 
         let response;
@@ -60,7 +68,8 @@ function AnnouncementModal(props) {
                 method: 'POST',
                 body: JSON.stringify(announcement),
                 headers: {
-                    'Content-type': 'application/json'
+                    'Content-type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
                 }
             })
         }
@@ -70,7 +79,8 @@ function AnnouncementModal(props) {
                 method: 'PATCH',
                 body: JSON.stringify(announcement),
                 headers: {
-                    'Content-type': 'application/json'
+                    'Content-type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
                 }
             })
         }
