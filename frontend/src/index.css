@@ -117,3 +117,12 @@ textarea {
   width: 465px;
   text-align: justify;
 }
+
+.keterangan {
+  height: 500px;
+  border: 1px solid;
+}
+
+.keterangan h2 {
+  padding: 20px;
+}
