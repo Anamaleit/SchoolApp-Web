@@ -23,23 +23,23 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element= {user ? <Home/> : <Navigate to ="/login"/>}
+              element= {user ? <Home/> : <Navigate to="/login"/>}
             />
             <Route
               path="/Nilai"
-              element= {user ? <Nilai/> : <Navigate to ="/Nilai"/>}
+              element= {user ? <Nilai/> : <Navigate to="/Nilai"/>}
             />
             <Route
               path="/Absensi"
-              element= {user ? <Absensi/> : <Navigate to ="/Absensi"/>}
+              element= {user ? <Absensi/> : <Navigate to="/Absensi"/>}
             />
             <Route
               path="/StatusPembayaran"
-              element= {user ? <StatusPembayaran/> : <Navigate to ="/StatusPembayaran"/>}
+              element= {user ? <StatusPembayaran/> : <Navigate to="/StatusPembayaran"/>}
             />
             <Route
               path="/Keterangan"
-              element= {user ? <Keterangan/> : <Navigate to ="/Keterangan"/>}
+              element= {user ? <Keterangan/> : <Navigate to="/Keterangan"/>}
             />
             <Route
               path="/login"
@@ -51,7 +51,7 @@ function App() {
             />
             <Route
               path="/raw"
-              element={user ? <Raw/> : <Navigate to ="/raw"/>}
+              element={user ? <Raw/> : <Navigate to="/raw"/>}
             />
           </Routes>
         </div>
