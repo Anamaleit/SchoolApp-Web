@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { useAuthContext } from './hooks/useAuthContext'
 
 // pages & components
 import Home from './pages/Home'
@@ -12,6 +13,8 @@ import Signup from './pages/Signup'
 import Raw from './pages/Raw'
 
 function App() {
+  const { user } = useAuthContext()
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -20,35 +23,35 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element= {<Home />}
+              element= {user ? <Home/> : <Navigate to ="/login"/>}
             />
             <Route
               path="/Nilai"
-              element= {<Nilai />}
+              element= {user ? <Nilai/> : <Navigate to ="/Nilai"/>}
             />
             <Route
               path="/Absensi"
-              element= {<Absensi />}
+              element= {user ? <Absensi/> : <Navigate to ="/Absensi"/>}
             />
             <Route
               path="/StatusPembayaran"
-              element= {<StatusPembayaran />}
+              element= {user ? <StatusPembayaran/> : <Navigate to ="/StatusPembayaran"/>}
             />
             <Route
               path="/Keterangan"
-              element= {<Keterangan />}
+              element= {user ? <Keterangan/> : <Navigate to ="/Keterangan"/>}
             />
             <Route
               path="/login"
-              element={<Login/>}
+              element={!user ? <Login/> : <Navigate to="/"/>}
             />
             <Route
               path="/signup"
-              element={<Signup/>}
+              element={!user ? <Signup/> : <Navigate to="/"/>}
             />
             <Route
               path="/raw"
-              element={<Raw/>}
+              element={user ? <Raw/> : <Navigate to ="/raw"/>}
             />
           </Routes>
         </div>
