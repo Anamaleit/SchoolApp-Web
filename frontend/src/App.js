@@ -27,19 +27,19 @@ function App() {
             />
             <Route
               path="/Nilai"
-              element= {user ? <Nilai/> : <Navigate to="/Nilai"/>}
+              element= {user ? <Nilai/> : <Navigate to="/login"/>}
             />
             <Route
               path="/Absensi"
-              element= {user ? <Absensi/> : <Navigate to="/Absensi"/>}
+              element= {user ? <Absensi/> : <Navigate to="/login"/>}
             />
             <Route
               path="/StatusPembayaran"
-              element= {user ? <StatusPembayaran/> : <Navigate to="/StatusPembayaran"/>}
+              element= {user ? <StatusPembayaran/> : <Navigate to="/login"/>}
             />
             <Route
               path="/Keterangan"
-              element= {user ? <Keterangan/> : <Navigate to="/Keterangan"/>}
+              element= {user ? <Keterangan/> : <Navigate to="/login"/>}
             />
             <Route
               path="/login"
@@ -51,7 +51,7 @@ function App() {
             />
             <Route
               path="/raw"
-              element={user ? <Raw/> : <Navigate to="/raw"/>}
+              element={user ? <Raw/> : <Navigate to="/login"/>}
             />
           </Routes>
         </div>
