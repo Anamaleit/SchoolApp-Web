@@ -1,3 +1,4 @@
+const Generic = require('./genericController')
 const Students = require('../models/studentsModel')
 const mongoose = require('mongoose')
 
@@ -8,6 +9,18 @@ const getStudents = async (req, res) => {
     res.status(200).json(students)
 }
 
+// get a student
+const getStudent = async (req, res) => {
+    await Generic.getOne(req,res,Students,"student");
+}
+
+// update a student
+const updateStudent = async (req, res) => {
+    await Generic.update(req,res,Students,"student");
+}
+
 module.exports = {
-    getStudents
+    getStudents,
+    getStudent,
+    updateStudent
 }

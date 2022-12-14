@@ -25,7 +25,7 @@ function AnnouncementModal(props) {
             buttonTitle = 'Create a new announcement';
             createMode = true;
             updateMode = false;
-            buttonType= 'announcement-create-button'
+            buttonType= 'announcement-create-button';
             break;
         case 'update':
             dispatchType = 'UPDATE_ANNOUNCEMENT';
@@ -35,7 +35,7 @@ function AnnouncementModal(props) {
             buttonTitle = 'Edit';
             createMode = false;
             updateMode = true;
-            buttonType= 'announcement-update-button'
+            buttonType= 'announcement-update-button';
             break;
     }
     
@@ -111,51 +111,50 @@ function AnnouncementModal(props) {
 
     return (
         <>
-        <button className={buttonType} onClick={handleShow}> {buttonTitle}
-        </button>
+            <button className={buttonType} onClick={handleShow}> {buttonTitle}</button>
 
-        <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-                <Modal.Title>{formTitle}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <form className="create" onSubmit={handleSubmit}>
-                    <div className="class-input">Kelas mana yang dapat melihat pengumuman ini?</div>
-                    <input type="text"
-                        onChange={(e) => setClasses(e.target.value)}
-                        value={classes}
-                        className={emptyFields.includes('classes') ? 'error' : ''}
-                    />
-                    <div className="form-outline">
-                        <label className="form-label">Header</label>
-                        <input 
-                            className={emptyFields.includes('title') ? 'error' : ''}
-                            type="text"
-                            onChange={(e) => setTitle(e.target.value)}
-                            value={title}
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>{formTitle}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <form className="create" onSubmit={handleSubmit}>
+                        <div className="class-input">Kelas mana yang dapat melihat pengumuman ini?</div>
+                        <input type="text"
+                            onChange={(e) => setClasses(e.target.value)}
+                            value={classes}
+                            className={emptyFields.includes('classes') ? 'error' : ''}
                         />
-                    </div>
-                    <div className="form-outline mb-4">
-                        <label className="form-label">Body</label>
-                        <textarea
-                            className={emptyFields.includes('description') ? 'error' : ''}
-                            type="text"
-                            onChange={(e) => setDescription(e.target.value)}
-                            value={description}
-                            rows="3"
-                        />
-                    </div>
+                        <div className="form-outline">
+                            <label className="form-label">Header</label>
+                            <input 
+                                className={emptyFields.includes('title') ? 'error' : ''}
+                                type="text"
+                                onChange={(e) => setTitle(e.target.value)}
+                                value={title}
+                            />
+                        </div>
+                        <div className="form-outline mb-4">
+                            <label className="form-label">Body</label>
+                            <textarea
+                                className={emptyFields.includes('description') ? 'error' : ''}
+                                type="text"
+                                onChange={(e) => setDescription(e.target.value)}
+                                value={description}
+                                rows="3"
+                            />
+                        </div>
 
-                    <button>{formFinishButtonText}</button>
-                    {error && <div className="error">{error}</div>}
-                </form>
-            </Modal.Body>
-            <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-                Close
-            </Button>
-            </Modal.Footer>
-        </Modal>
+                        <button>{formFinishButtonText}</button>
+                        {error && <div className="error">{error}</div>}
+                    </form>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                    Close
+                </Button>
+                </Modal.Footer>
+            </Modal>
         </>
     );
 }

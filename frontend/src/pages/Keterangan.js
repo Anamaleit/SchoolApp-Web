@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useAuthContext } from "../hooks/useAuthContext"
+import { useStudentsContext } from "../hooks/useStudentsContext"
+
+import KeteranganDetails from "../components/KeteranganDetails"
 
 const Keterangan = () => {
-    const [students, setStudents] = useState(null)
+    const {students, dispatch} = useStudentsContext()
     const {user} = useAuthContext()
 
     useEffect(() => {
@@ -16,7 +19,7 @@ const Keterangan = () => {
 
 
             if (response.ok) {
-                setStudents(json)
+                dispatch({type: 'SET_STUDENTS', payload: json})
             }
 
         }
@@ -24,7 +27,7 @@ const Keterangan = () => {
         if (user) {
             fetchStudents()
         }
-    }, [user])
+    }, [dispatch, user])
 
     return (
         <div className="container">
@@ -32,7 +35,7 @@ const Keterangan = () => {
                 <h2>Keterangan</h2>
                 <div className="content">
                     {students && students.map((student) => (
-                        <p key={student._id}>{student.num}{student.name}</p>
+                        <KeteranganDetails key={student._id} student={student} />
                     ))}
                 </div>
             </div>
