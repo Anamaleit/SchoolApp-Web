@@ -47,10 +47,10 @@ function KeteranganModal(props) {
     const { dispatch } = useStudentsContext()
     const { user } = useAuthContext()
 
+    const [name] = useState(updateMode?props.student.name:'')
     const [ket, setKet] = useState(updateMode?props.student.ket:'')
     const [error, setError] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
-
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -60,7 +60,7 @@ function KeteranganModal(props) {
             return
           }
 
-        const student = {ket}
+        const student = {name, ket}
 
         let response;
         if (updateMode){
@@ -99,6 +99,24 @@ function KeteranganModal(props) {
         }
     }
 
+    const update = 
+        <form className={buttonType} onSubmit={handleSubmit}>
+        <span>{props.student.name}</span>
+            <input type="text"
+            onChange={(e) => setKet(e.target.value)}
+            value={ket}
+            className={emptyFields.includes('ket') ? 'error' : ''}
+        />
+        <button>{formFinishButtonText}</button>
+        {error && <div className="error">{error}</div>}
+        </form>
+
+    const view = 
+        <div className={buttonType}>
+            <span>{props.student.name}</span>
+            <span>{props.student.ket}</span>
+        </div>
+
     return (
         <>
             <button className={buttonType} onClick={handleShow}> {buttonTitle}</button>
@@ -108,16 +126,7 @@ function KeteranganModal(props) {
                     <Modal.Title>{formTitle}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <form className='edit' onSubmit={handleSubmit}>
-                        <span>Student</span>
-                        <input type="text"
-                            onChange={(e) => setKet(e.target.value)}
-                            value={ket}
-                            className={emptyFields.includes('ket') ? 'error' : ''}
-                        />
-                        <button>{formFinishButtonText}</button>
-                        {error && <div className="error">{error}</div>}
-                    </form>
+                    {props.mode === 'update' ? update : view}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>

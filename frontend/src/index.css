@@ -126,3 +126,15 @@ textarea {
 .keterangan h2 {
   padding: 20px;
 }
+
+.keterangan .content .titles {
+  display: flex;
+  justify-content: space-around;
+}
+
+.keterangan-table {
+  display: flex;
+  justify-content: space-around;
+  padding: 6px;
+  border: 1px solid;
+}

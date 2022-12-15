@@ -34,6 +34,11 @@ const Keterangan = () => {
             <div className="keterangan">
                 <h2>Keterangan</h2>
                 <div className="content">
+                    <div className="titles">
+                        <span>Absen</span>
+                        <span>Students Name</span>
+                        <span style={{paddingRight: '70px'}}>Action</span>
+                    </div>
                     {students && students.map((student) => (
                         <KeteranganDetails key={student._id} student={student} />
                     ))}
