@@ -13,10 +13,6 @@
             students: {
                 type: Array,
                 required: true
-            },
-            ket: {
-                type: String,
-                required: true
             }
         }
     };

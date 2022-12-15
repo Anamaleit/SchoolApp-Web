@@ -13,6 +13,10 @@
             num: {
                 type: Number,
                 required: true
+            },
+            ket: {
+                type: String,
+                required: true
             }
         }
     };
