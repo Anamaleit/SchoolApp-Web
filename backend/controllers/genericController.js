@@ -41,9 +41,15 @@ module.exports = {
         if(!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(404).json({error: "No "+itemNameSingular+" found"})
         }
-        const item = await model.findOneAndUpdate({_id: id}, {
-            ...req.body}, {new: true}
-        )
+        let item;
+        try {
+            item = await model.findOneAndUpdate({_id: id}, {
+                ...req.body}, {new: true}
+            )
+        }
+        catch (error){
+            return res.status(400).json({error: error.message})
+        }
         if (!item) {
             return res.status(404).json({error: "No "+itemNameSingular+" found"})
         }

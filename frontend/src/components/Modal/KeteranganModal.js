@@ -108,15 +108,16 @@ function KeteranganModal(props) {
                     <Modal.Title>{formTitle}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <form className='edit' onSubmit={handleSubmit}></form>
-                    <span>Student</span>
-                    <input type="text"
-                        onChange={(e) => setKet(e.target.value)}
-                        value={ket}
-                        className={emptyFields.includes('ket') ? 'error' : ''}
-                    />
-                    <button>{formFinishButtonText}</button>
-                    {error && <div className="error">{error}</div>}
+                    <form className='edit' onSubmit={handleSubmit}>
+                        <span>Student</span>
+                        <input type="text"
+                            onChange={(e) => setKet(e.target.value)}
+                            value={ket}
+                            className={emptyFields.includes('ket') ? 'error' : ''}
+                        />
+                        <button>{formFinishButtonText}</button>
+                        {error && <div className="error">{error}</div>}
+                    </form>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
