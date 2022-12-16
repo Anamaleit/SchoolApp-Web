@@ -15,6 +15,7 @@ function KeteranganModal(props) {
     let updateMode;
     let viewMode;
     let buttonType;
+    let bodyType;
 
     switch (props.mode) {
         default:
@@ -27,6 +28,7 @@ function KeteranganModal(props) {
                 updateMode = true;
                 viewMode = false;
                 buttonType = 'keterangan-edit-button';
+                bodyType = 'keterangan-edit-body'
                 break;
             case 'view':
                 dispatchType = 'SET_STUDENTS';
@@ -37,6 +39,7 @@ function KeteranganModal(props) {
                 updateMode = false;
                 viewMode = true;
                 buttonType = 'keterangan-view-button';
+                bodyType = 'keterangan-view-body'
                 break;
     }
 
@@ -100,21 +103,29 @@ function KeteranganModal(props) {
     }
 
     const update = 
-        <form className={buttonType} onSubmit={handleSubmit}>
-        <span>{props.student.name}</span>
-            <input type="text"
+        <form className={bodyType} onSubmit={handleSubmit}>
+        <span style={{fontWeight: '700'}}>{props.student.name}</span>
+            <textarea 
+            type="text"
             onChange={(e) => setKet(e.target.value)}
             value={ket}
             className={emptyFields.includes('ket') ? 'error' : ''}
+            rows="3"
+            style={{marginTop: '20px'}}
         />
-        <button>{formFinishButtonText}</button>
+        <button style={{marginTop: '20px'}}>{formFinishButtonText}</button>
         {error && <div className="error">{error}</div>}
         </form>
 
     const view = 
-        <div className={buttonType}>
-            <span>{props.student.name}</span>
-            <span>{props.student.ket}</span>
+        <div className={bodyType}>
+            <span style={{fontWeight: '700'}}>{props.student.name}</span>
+            <span 
+                style={{
+                    display: 'block',
+                    marginTop: '20px',
+                    textAlign: 'justify'
+            }}>{props.student.ket}</span>
         </div>
 
     return (

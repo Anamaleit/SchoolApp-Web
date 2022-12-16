@@ -17,6 +17,10 @@
             ket: {
                 type: String,
                 required: true
+            },
+            grades: {
+                math: {type: Number},
+                english : {type: Number}
             }
         }
     };

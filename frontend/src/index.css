@@ -118,21 +118,21 @@ textarea {
   text-align: justify;
 }
 
-.keterangan {
+.keterangan, .nilai {
   height: 500px;
   border: 1px solid;
 }
 
-.keterangan h2 {
+.keterangan h2, .nilai h2 {
   padding: 20px;
 }
 
-.keterangan .content .titles {
+.keterangan .content .titles, .nilai .content .titles {
   display: flex;
   justify-content: space-around;
 }
 
-.keterangan-table {
+.keterangan-table, .nilai-table {
   display: flex;
   justify-content: space-around;
   padding: 6px;
