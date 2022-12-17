@@ -1,9 +1,8 @@
-const NilaiDetails = ({ student }) => {
+const StatusPayDetails = ({ student }) => {
     return (
-        <div className="nilai-table">
+        <div className="status-pay-table">
             <div className="num">
                 <span>{student.num}</span>
-                {/* <span>{JSON.stringify(student.grades.math)}</span> */}
             </div>
             <div className="name">
                 <span>{student.name}</span>
@@ -14,4 +13,4 @@ const NilaiDetails = ({ student }) => {
     )
 }
 
-export default NilaiDetails
+export default StatusPayDetails

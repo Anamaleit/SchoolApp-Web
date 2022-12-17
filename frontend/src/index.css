@@ -118,21 +118,33 @@ textarea {
   text-align: justify;
 }
 
-.keterangan, .nilai {
+.keterangan, 
+.nilai,
+.absensi,
+.status-pay {
   height: 500px;
   border: 1px solid;
 }
 
-.keterangan h2, .nilai h2 {
+.keterangan h2, 
+.nilai h2,
+.absensi h2,
+.status-pay h2 {
   padding: 20px;
 }
 
-.keterangan .content .titles, .nilai .content .titles {
+.keterangan .content .titles, 
+.nilai .content .titles,
+.absensi .content .titles,
+.status-pay .content .titles {
   display: flex;
   justify-content: space-around;
 }
 
-.keterangan-table, .nilai-table {
+.keterangan-table, 
+.nilai-table,
+.absensi-table,
+.status-pay-table {
   display: flex;
   justify-content: space-around;
   padding: 6px;

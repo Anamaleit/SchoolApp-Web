@@ -4,13 +4,13 @@ const KeteranganDetails = ({ student }) => {
     
     return (
         <div className="keterangan-table">
-            <div className="keterangan-num">
+            <div className="num">
                 <span>{student.num}</span>
             </div>
-            <div className="keterangan-name">
+            <div className="name">
                 <span>{student.name}</span>
             </div>
-            <div className="keterangan-action">
+            <div className="action">
                 <KeteranganModal mode="update" student={student} className="keterangan-update-button"/>
                 <KeteranganModal mode="view" student={student} className="keterangan-view-button"/>
             </div>
