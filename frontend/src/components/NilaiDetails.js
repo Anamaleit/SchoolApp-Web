@@ -9,6 +9,8 @@ const NilaiDetails = ({ student }) => {
                 <span>{student.name}</span>
             </div>
             <div className="action">
+                <button>view</button>
+                <button style={{marginLeft: '10px'}}>edit</button>
             </div>
         </div>
     )

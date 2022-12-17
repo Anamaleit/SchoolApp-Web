@@ -11,8 +11,8 @@ const KeteranganDetails = ({ student }) => {
                 <span>{student.name}</span>
             </div>
             <div className="action">
-                <KeteranganModal mode="update" student={student} className="keterangan-update-button"/>
-                <KeteranganModal mode="view" student={student} className="keterangan-view-button"/>
+                <KeteranganModal mode="view" student={student}/>
+                <KeteranganModal mode="update" student={student}/>
             </div>
         </div>
     )

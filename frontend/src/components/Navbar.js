@@ -21,7 +21,7 @@ const Navbar = () => {
                     <li><Link to="/StatusPembayaran">Status Pembayaran</Link></li>
                     <li><Link to="/Keterangan">Keterangan</Link></li>
                     <li style={{marginLeft: "600px"}}>{user.email}</li>
-                    <button onClick={handleClick}>Log out</button>
+                    <button onClick={handleClick} style={{marginLeft: "10px"}}>Log out</button>
                 </ul>
             </div>
             )}

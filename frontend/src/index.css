@@ -150,3 +150,12 @@ textarea {
   padding: 6px;
   border: 1px solid;
 }
+
+.status-pay-save {
+  margin-top: 20px;
+  margin-left: 45%;
+}
+
+.keterangan-edit-button {
+  margin-left: 10px;
+}
