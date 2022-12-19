@@ -123,8 +123,37 @@ function AnnouncementModal(props) {
                         <input type="text"
                             onChange={(e) => setClasses(e.target.value)}
                             value={classes}
+                            list="dwarf-class" required
                             className={emptyFields.includes('classes') ? 'error' : ''}
+                            multiple
                         />
+                        <datalist id="dwarf-class">
+                            <option value="All">All</option>
+                            <option value="1A">1A</option>
+                            <option value="1B">1B</option>
+                            <option value="1C">1C</option>
+                            <option value="1D">1D</option>
+                            <option value="2A">2A</option>
+                            <option value="2B">2B</option>
+                            <option value="2C">2C</option>
+                            <option value="2D">2D</option>
+                            <option value="3A">3A</option>
+                            <option value="3B">3B</option>
+                            <option value="3C">3C</option>
+                            <option value="3D">3D</option>
+                            <option value="4A">4A</option>
+                            <option value="4B">4B</option>
+                            <option value="4C">4C</option>
+                            <option value="4D">4D</option>
+                            <option value="5A">5A</option>
+                            <option value="5B">5B</option>
+                            <option value="5C">5C</option>
+                            <option value="5D">5D</option>
+                            <option value="6A">6A</option>
+                            <option value="6B">6B</option>
+                            <option value="6C">6C</option>
+                            <option value="6D">6D</option>
+                        </datalist>
                         <div className="form-outline">
                             <label className="form-label">Header</label>
                             <input 

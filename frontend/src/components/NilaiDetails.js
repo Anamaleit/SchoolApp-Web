@@ -3,7 +3,7 @@ const NilaiDetails = ({ student }) => {
         <div className="nilai-table">
             <div className="num">
                 <span>{student.num}</span>
-                {/* <span>{JSON.stringify(student.grades.math)}</span> */}
+                {/* <span>{JSON.stringify(student.grades.agama.pr.pr1)}</span> */}
             </div>
             <div className="name">
                 <span>{student.name}</span>

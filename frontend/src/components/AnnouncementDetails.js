@@ -38,6 +38,7 @@ const AnnouncementDetails = ({ announcement }) => {
             <div className="announcement-content">
                 <p><strong></strong>{announcement.description}</p>
             </div>
+            <div className='user-id' style={{margin: '20px'}}>created by {user.email}</div>
             <AnnouncementModal mode="update" announcement={announcement} className="announcement-update-button"/>
             <br/>
             <button className="delete-button" onClick={handleClick}>Delete</button>
