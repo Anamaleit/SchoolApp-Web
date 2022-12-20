@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useEffect } from "react"
 import { useAuthContext } from "../hooks/useAuthContext"
 import { useStudentsContext } from "../hooks/useStudentsContext"
@@ -7,6 +8,10 @@ import StatusPayDetails from "../components/StatusPayDetails"
 const StatusPayment = () => {
     const {students, dispatch} = useStudentsContext()
     const {user} = useAuthContext()
+
+    const defaultValue = new Date().toISOString().split('T')[0].substr(0,'yyyy-mm'.length)
+
+    const [month, setMonth] = useState(defaultValue)
 
     useEffect(() => {
         const fetchStudents = async () => {
@@ -29,36 +34,59 @@ const StatusPayment = () => {
         }
     }, [dispatch, user])
 
+    const save = async (e) => {
+        e.preventDefault()
+
+        const date = month;//document.querySelector('#monthSelect').value;
+        
+        const elements = [...document.querySelectorAll('select[data-info=\'paidMonths\']')];
+        const responses = await Promise.all(elements.map(async element => {
+            const paid = (element.value === 'true');
+            const _id = element.getAttribute('data-student-id');
+            const student = (paid)
+                ? {
+                    $addToSet: { paidMonths: date },
+                }
+                : {
+                    $pull: { paidMonths: date },
+                };
+            console.log(student);
+            const response = await fetch('/api/students/'+_id, {
+                method: 'PATCH',
+                body: JSON.stringify(student),
+                headers: {
+                    'Content-type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
+                }
+            });
+            return response;
+        }));
+        const okArray = await Promise.all(responses.map(async response => {
+            const json = await response.json();
+            if(!response.ok) {
+                console.warn(json);
+            }
+            return response.ok;
+        }));
+        const allOk = okArray.reduce((p,v)=>p&&v,true);
+        console.log(allOk);
+    };
 
     return (
         <div className="container">
             <div className="status-pay">
                 <h2>Status Pembayaran</h2>
                 <div className="content">
-                    <select name="month" id="monthSelect" style={{marginLeft: '20px'}}>
-                        <option value="">--Month--</option>
-                        <option value="1">January</option>
-                        <option value="2">February</option>
-                        <option value="3">March</option>
-                        <option value="4">April</option>
-                        <option value="5">May</option>
-                        <option value="6">June</option>
-                        <option value="7">July</option>
-                        <option value="8">August</option>
-                        <option value="9">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>
+                    <input type="month" id="monthSelect" min="2020-01" max="2099-12" onChange={(e) => setMonth(e.target.value)} defaultValue={defaultValue} />
                     <div className="titles" style={{marginTop: '20px'}}>
                         <span>Absen</span>
                         <span>Students Name</span>
                         <span style={{paddingRight: '130px'}}>Action</span>
                     </div>
                     {students && students.map((student) => (
-                        <StatusPayDetails key={student._id} student={student} /> 
+                        <StatusPayDetails key={month+student._id} student={student} month={month} /> 
                     ))}
-                    <button className="status-pay-save">Save</button>
+                    <button className="status-pay-save" onClick={save}>Save</button>
                 </div>
             </div>
         </div>

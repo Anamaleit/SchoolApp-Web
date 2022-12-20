@@ -332,6 +332,7 @@
                 type: Number,
                 required: true
             },
+            paidMonths: [{type: String}],
         }
     };
 })();
