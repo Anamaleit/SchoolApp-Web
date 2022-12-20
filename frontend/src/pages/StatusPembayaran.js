@@ -77,7 +77,7 @@ const StatusPayment = () => {
             <div className="status-pay">
                 <h2>Status Pembayaran</h2>
                 <div className="content">
-                    <input type="month" id="monthSelect" min="2020-01" max="2099-12" onChange={(e) => setMonth(e.target.value)} defaultValue={defaultValue} />
+                    <input type="month" id="monthSelect" min="2020-01" max="2099-12" onChange={(e) => setMonth(e.target.value)} defaultValue={defaultValue} style={{marginLeft: '10px'}}/>
                     <div className="titles" style={{marginTop: '20px'}}>
                         <span>Absen</span>
                         <span>Students Name</span>

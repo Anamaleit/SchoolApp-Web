@@ -17,7 +17,7 @@ router.use(requireAuth)
 router.get('/', getStudents)
 
 // GET a student
-router.get('/id', getStudent)
+router.get('/:id', getStudent)
 
 // UPDATE a student
 router.patch('/:id', updateStudent)

@@ -1,3 +1,5 @@
+import NilaiModal from "./Modal/NilaiModal"
+
 const NilaiDetails = ({ student }) => {
     return (
         <div className="nilai-table">
@@ -9,8 +11,8 @@ const NilaiDetails = ({ student }) => {
                 <span>{student.name}</span>
             </div>
             <div className="action">
-                <button>view</button>
-                <button style={{marginLeft: '10px'}}>edit</button>
+                <NilaiModal mode="view" student={student}/>
+                <NilaiModal mode="update" student={student} style={{marginLeft: '10px'}}/>
             </div>
         </div>
     )

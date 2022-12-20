@@ -1,3 +1,5 @@
+import StatusPayModal from "./Modal/StatusPayModal";
+
 const StatusPayDetails = ({ student,month }) => {
     
     const paid = (student.paidMonths !== undefined && student.paidMonths.includes(month));
@@ -11,7 +13,7 @@ const StatusPayDetails = ({ student,month }) => {
                 <span>{student.name}</span>
             </div>
             <div className="action">
-                <button>view</button>
+                <StatusPayModal student={student} month={month} />
                 <select name="status-payment" id="statusSelect" data-student-id={student._id} data-info="paidMonths" defaultValue={paid?'true':'false'} style={{marginLeft: '10px'}}>
                     <option value="true">Lunas</option>
                     <option value="false">Belum Lunas</option>
