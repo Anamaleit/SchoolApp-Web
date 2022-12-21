@@ -1,4 +1,5 @@
 (()=>{
+    const mongoose = require('mongoose');
     module.exports = {
         name: "user",
         schema: {
@@ -10,7 +11,9 @@
             password: {
                 type: String,
                 required: true
-            }
+            },
+            isTeacher: {type: Boolean},
+            viewableStudents: [{type: mongoose.Types.ObjectId}],
         }
     };
 })();
