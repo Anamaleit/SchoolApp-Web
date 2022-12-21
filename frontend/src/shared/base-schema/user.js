@@ -12,10 +12,7 @@
                 type: String,
                 required: true
             },
-            isTeacher: {
-                type: Boolean,
-                required: true
-            },
+            isTeacher: {type: Boolean},
             viewableStudents: [{type: mongoose.Types.ObjectId}],
         }
     };
