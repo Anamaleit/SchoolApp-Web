@@ -1,19 +1,25 @@
 // Generic CRUD for any schema.
 
 import React from 'react';
+import { useAuthContext } from "../hooks/useAuthContext"
 
 const Raw = () => {
+    const {user} = useAuthContext()
     let allElements = [];
     [
-        {name:'announcement',apiName:'announcements',baseSchema:require('../shared/base-schema/announcement.js')},
-        {name:'class'       ,apiName:'classes'      ,baseSchema:require('../shared/base-schema/class.js'       )},
-        {name:'user'        ,apiName:'user'         ,baseSchema:require('../shared/base-schema/user.js'        )},
+        {name:'student'     ,apiName:'students'     ,baseSchema:require('../shared/base-schema/student.js'     )},
+        //{name:'announcement',apiName:'announcements',baseSchema:require('../shared/base-schema/announcement.js')},
+        //{name:'class'       ,apiName:'classes'      ,baseSchema:require('../shared/base-schema/class.js'       )},
+        //{name:'user'        ,apiName:'user'         ,baseSchema:require('../shared/base-schema/user.js'        )},
     ].forEach((entry)=>{
         const readAll = async function(event){
             
             // Make server request.
             const response = await fetch('/api/'+entry.apiName+'/', {
                 method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                },
             });
             
             // Display result.
@@ -32,6 +38,9 @@ const Raw = () => {
             // Make server request.
             const response = await fetch('/api/'+entry.apiName+'/'+_id, {
                 method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                },
             });
             
             // Display result.
@@ -64,7 +73,10 @@ const Raw = () => {
             const response = await fetch('/api/'+entry.apiName+'/'+_id, {
                 method: 'PATCH',
                 body: JSON.stringify(item),
-                headers: {'Content-type': 'application/json'}
+                headers: {
+                    'Content-type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
+                }
             });
             
             // Display result.
@@ -88,7 +100,10 @@ const Raw = () => {
             const response = await fetch('/api/'+entry.apiName+'/', {
                 method: 'POST',
                 body: JSON.stringify(item),
-                headers: {'Content-type': 'application/json'}
+                headers: {
+                    'Content-type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
+                }
             });
             
             // Display result.
@@ -107,6 +122,9 @@ const Raw = () => {
             // Make server request.
             const response = await fetch('/api/'+entry.apiName+'/'+_id, {
                 method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                },
             });
             
             // Display result.

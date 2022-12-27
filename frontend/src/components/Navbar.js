@@ -16,6 +16,7 @@ const Navbar = () => {
             <div className="nav-left">
                 <ul>
                     <li><Link to = "/">Dashboard</Link></li>
+                    <li><Link to = "/Raw">Raw</Link></li>
                     <li><Link to = "/Student">Student</Link></li>
                     <li><Link to ="/Nilai">Nilai</Link></li>
                     <li><Link to="/Absensi">Absensi</Link></li>
