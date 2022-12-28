@@ -49,7 +49,7 @@ const updateStudent = async (req, res) => {
     // permissions check
     const isAdmin = (req.user.isAdmin !== undefined && req.user.isAdmin === true);
     const isTeacher = (req.user.isTeacher !== undefined && req.user.isTeacher === true);
-    if (!isTeacher || !isAdmin){
+    if (!isTeacher && !isAdmin){
         return res.status(400).json({error: 'not permitted to edit any students'})
     }
     
@@ -62,7 +62,7 @@ const createStudent = async (req, res) => {
     // permissions check
     const isAdmin = (req.user.isAdmin !== undefined && req.user.isAdmin === true);
     const isTeacher = (req.user.isTeacher !== undefined && req.user.isTeacher === true);
-    if (!isTeacher || !isAdmin){
+    if (!isTeacher && !isAdmin){
         return res.status(400).json({error: 'not permitted to create any students'})
     }
     
@@ -75,7 +75,7 @@ const deleteStudent = async (req, res) => {
     // permissions check
     const isAdmin = (req.user.isAdmin !== undefined && req.user.isAdmin === true);
     const isTeacher = (req.user.isTeacher !== undefined && req.user.isTeacher === true);
-    if (!isTeacher || !isAdmin){
+    if (!isTeacher && !isAdmin){
         return res.status(400).json({error: 'not permitted to delete any students'})
     }
     
