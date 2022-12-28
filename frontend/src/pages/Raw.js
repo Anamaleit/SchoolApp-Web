@@ -103,7 +103,7 @@ const Raw = () => {
             let item = {};
             [...event.target.parentNode.querySelectorAll('textarea')].forEach(element=>{
                const propertyName = element.getAttribute('data-property-name');
-               const propertyValue = element.value;
+               const propertyValue = JSON.parse(element.value);
                item[propertyName] = propertyValue;
             });
             
