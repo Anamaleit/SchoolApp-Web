@@ -6,8 +6,9 @@ const mongoose = require('mongoose')
 const getStudents = async (req, res) => {
     
     let students;
+    const isAdmin = (req.user.isAdmin !== undefined && req.user.isAdmin === true);
     const isTeacher = (req.user.isTeacher !== undefined && req.user.isTeacher === true);
-    if (isTeacher){
+    if (isTeacher || isAdmin){
         students = await Students.find({}).sort({num: 1})
     }
     else{
@@ -31,9 +32,10 @@ const getStudent = async (req, res) => {
     if (req.user === undefined){
         return res.status(400).json({error: 'authentication error'})
     }
+    const isAdmin = (req.user.isAdmin !== undefined && req.user.isAdmin === true);
     const isTeacher = (req.user.isTeacher !== undefined && req.user.isTeacher === true);
     const canView = (req.user.viewableStudents !== undefined && req.user.viewableStudents.includes(req.params.id));
-    const ok = (isTeacher || canView);
+    const ok = (isTeacher || canView || isAdmin);
     if (!ok){
         return res.status(400).json({error: 'not permitted to view this student'})
     }
@@ -45,8 +47,9 @@ const getStudent = async (req, res) => {
 const updateStudent = async (req, res) => {
     
     // permissions check
+    const isAdmin = (req.user.isAdmin !== undefined && req.user.isAdmin === true);
     const isTeacher = (req.user.isTeacher !== undefined && req.user.isTeacher === true);
-    if (!isTeacher){
+    if (!isTeacher || !isAdmin){
         return res.status(400).json({error: 'not permitted to edit any students'})
     }
     
@@ -57,8 +60,9 @@ const updateStudent = async (req, res) => {
 const createStudent = async (req, res) => {
     
     // permissions check
+    const isAdmin = (req.user.isAdmin !== undefined && req.user.isAdmin === true);
     const isTeacher = (req.user.isTeacher !== undefined && req.user.isTeacher === true);
-    if (!isTeacher){
+    if (!isTeacher || !isAdmin){
         return res.status(400).json({error: 'not permitted to create any students'})
     }
     
@@ -69,8 +73,9 @@ const createStudent = async (req, res) => {
 const deleteStudent = async (req, res) => {
     
     // permissions check
+    const isAdmin = (req.user.isAdmin !== undefined && req.user.isAdmin === true);
     const isTeacher = (req.user.isTeacher !== undefined && req.user.isTeacher === true);
-    if (!isTeacher){
+    if (!isTeacher || !isAdmin){
         return res.status(400).json({error: 'not permitted to delete any students'})
     }
     

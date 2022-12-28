@@ -13,6 +13,7 @@
                 required: true
             },
             isTeacher: {type: Boolean},
+            isAdmin: {type: Boolean},
             viewableStudents: [{type: mongoose.Types.ObjectId}],
         }
     };
