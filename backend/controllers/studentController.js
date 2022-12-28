@@ -53,8 +53,36 @@ const updateStudent = async (req, res) => {
     await Generic.update(req,res,Students,"student");
 }
 
+// create a student
+const createStudent = async (req, res) => {
+    
+    // permissions check
+    const isTeacher = (req.user.isTeacher !== undefined && req.user.isTeacher === true);
+    if (!isTeacher){
+        return res.status(400).json({error: 'not permitted to create any students'})
+    }
+    
+    await Generic.create(req,res,Students,"student");
+}
+
+// delete a student
+const deleteStudent = async (req, res) => {
+    
+    // permissions check
+    const isTeacher = (req.user.isTeacher !== undefined && req.user.isTeacher === true);
+    if (!isTeacher){
+        return res.status(400).json({error: 'not permitted to delete any students'})
+    }
+    
+    await Generic.delete(req,res,Students,"student");
+}
+
+
+
 module.exports = {
     getStudents,
     getStudent,
-    updateStudent
+    updateStudent,
+    createStudent,
+    deleteStudent
 }

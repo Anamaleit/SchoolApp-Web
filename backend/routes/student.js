@@ -2,7 +2,9 @@ const express = require('express')
 const {
     getStudents,
     getStudent,
-    updateStudent
+    updateStudent,
+    createStudent,
+    deleteStudent
 
 } = require('../controllers/studentController')
 
@@ -22,5 +24,10 @@ router.get('/:id', getStudent)
 // UPDATE a student
 router.patch('/:id', updateStudent)
 
+// POST a new student
+router.post('/', createStudent)
+
+// DELETE a student
+router.delete('/:id', deleteStudent)
 
 module.exports = router
