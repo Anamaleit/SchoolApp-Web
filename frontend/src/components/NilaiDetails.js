@@ -11,8 +11,12 @@ const NilaiDetails = ({ student }) => {
                 <span>{student.name}</span>
             </div>
             <div className="action">
-                <NilaiModal mode="view" student={student}/>
-                <NilaiModal mode="update" student={student} style={{marginLeft: '10px'}}/>
+                {student.grades !== undefined && (
+                    <>
+                        <NilaiModal mode="view" student={student}/>
+                        <NilaiModal mode="update" student={student} style={{marginLeft: '10px'}}/>
+                    </>
+                )}
             </div>
         </div>
     )

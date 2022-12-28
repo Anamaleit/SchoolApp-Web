@@ -172,7 +172,8 @@ const Raw = () => {
                     {
                         Object.keys(entry.baseSchema.schema).map((propertyName)=>(
                             <React.Fragment key={propertyName}>
-                                <div>{propertyName} (JSON)</div> <textarea style={{'fontFamily':'monospace'}} key={propertyName} data-property-name={propertyName} /><br/><br/>
+                                <div>{propertyName} (JSON)</div>
+                                <textarea style={{'fontFamily':'monospace'}} key={propertyName} data-property-name={propertyName} /><br/><br/>
                             </React.Fragment>
                         ))
                     }
@@ -189,7 +190,8 @@ const Raw = () => {
                     {
                         Object.keys(entry.baseSchema.schema).map((propertyName)=>(
                             <React.Fragment key={propertyName}>
-                                <div>{propertyName} (JSON)</div> <textarea style={{'fontFamily':'monospace'}} key={propertyName} data-property-name={propertyName} /><br/><br/>
+                                <div>{propertyName} (JSON)</div>
+                                <textarea style={{'fontFamily':'monospace'}} key={propertyName} data-property-name={propertyName} /><br/><br/>
                             </React.Fragment>
                         ))
                     }
